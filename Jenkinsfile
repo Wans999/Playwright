@@ -1,6 +1,14 @@
 pipeline {
     agent any
 
+    parameters {
+        choice(
+            name: 'TAGS',
+            choices: ['all', '@positive', '@negative', '@inventory'],
+            description: 'Pilih tag scenario yang mau dijalankan'
+        )
+    }
+
     environment {
         PATH = "/usr/local/bin:${env.PATH}"
     }
@@ -26,7 +34,7 @@ pipeline {
 
         stage('Run Tests') {
             steps {
-                sh 'npm test'
+                sh params.TAGS == 'all' ? 'npm test' : "npx cucumber-js --tags ${params.TAGS}"
             }
         }
 
