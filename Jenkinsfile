@@ -55,6 +55,11 @@ pipeline {
                 reportFiles: 'index.html',
                 reportName: 'Cucumber HTML Report'
             ])
+            allure([
+                includeProperties: false,
+                jdk: '',
+                results: [[path: 'allure-results']]
+            ])
         }
     }
 }
