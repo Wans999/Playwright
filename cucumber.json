@@ -1,0 +1,8 @@
+{
+  "default": {
+    "require": ["steps/**/*.js", "support/**/*.js"],
+    "format": ["@cucumber/pretty-formatter", "json:reports/cucumber-report.json"],
+    "paths": ["features/**/*.feature"],
+    "publishQuiet": true
+  }
+}
