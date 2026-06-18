@@ -9,6 +9,8 @@ Framework automation testing menggunakan Playwright dan Cucumber dengan pola Pag
 - **Playwright** — browser automation
 - **Cucumber** — BDD framework
 - **multiple-cucumber-html-reporter** — HTML report generator
+- **Allure Report** — advanced report generator
+- **dotenv** — environment configuration
 - **Jenkins** — CI/CD
 
 ---
@@ -29,7 +31,10 @@ playwright/
 ├── support/
 │   └── world.js             # browser setup & hooks
 ├── reports/                 # output cucumber JSON report
+├── allure-results/          # output allure raw results
+├── allure-report/           # output allure HTML report
 ├── videos/                  # output video recording
+├── .env                     # environment variables (tidak di-push ke GitHub)
 ├── Jenkinsfile              # Jenkins CI/CD pipeline
 ├── cucumber.json            # konfigurasi cucumber
 ├── generate-report.js       # script generate HTML report
@@ -43,6 +48,13 @@ playwright/
 ```bash
 npm install
 npx playwright install chromium
+```
+
+Buat file `.env` di root project:
+```
+BASE_URL=https://www.saucedemo.com
+STANDARD_USER=standard_user
+PASSWORD=secret_sauce
 ```
 
 ---
@@ -67,6 +79,17 @@ npm run report
 ```
 
 Report tersimpan di `reports/html/index.html`.
+
+### Generate Allure Report
+```bash
+npm run allure:generate   # generate report dari allure-results
+npm run allure:open       # buka report di browser
+```
+
+Atau langsung serve tanpa generate:
+```bash
+npm run allure:serve
+```
 
 ---
 
@@ -108,6 +131,9 @@ Setiap test direkam otomatis dan disimpan di folder `videos/`. Dikonfigurasi di 
 
 ### Screenshot Per Step
 Screenshot diambil setelah setiap step dan otomatis masuk ke HTML report. Dikonfigurasi menggunakan hook `AfterStep` di `support/world.js`.
+
+### Environment Config
+Kredensial dan URL dikelola lewat file `.env` menggunakan package `dotenv`. File `.env` tidak di-push ke GitHub untuk keamanan.
 
 ---
 

@@ -3,7 +3,8 @@ const LoginPage = require('../pages/loginPage');
 
 Given('user opens {string}', async function (url) {
     this.loginPage = new LoginPage(this.page)
-    await this.loginPage.goto(url)
+    const baseUrl = process.env.BASE_URL || url
+    await this.loginPage.goto(baseUrl)
 })
 
 Then('the login page should be visible', async function () {

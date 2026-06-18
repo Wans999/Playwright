@@ -2,4 +2,7 @@ node_modules/
 videos/
 reports/html/
 reports/cucumber-report.json
+allure-results/
+allure-report/
 .DS_Store
+.env

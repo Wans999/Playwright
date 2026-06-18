@@ -1,4 +1,5 @@
 const { setWorldConstructor, World, Before, After, AfterStep, setDefaultTimeout } = require('@cucumber/cucumber');
+require('dotenv').config();
 
 setDefaultTimeout(30000);
 const { chromium } = require('playwright');
