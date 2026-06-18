@@ -39,7 +39,14 @@ pipeline {
 
     post {
         always {
-            archiveArtifacts artifacts: 'reports/html/**', allowEmptyArchive: true
+            publishHTML(target: [
+                allowMissing: false,
+                alwaysLinkToLastBuild: true,
+                keepAll: true,
+                reportDir: 'reports/html',
+                reportFiles: 'index.html',
+                reportName: 'Cucumber HTML Report'
+            ])
         }
     }
 }
