@@ -11,6 +11,7 @@ pipeline {
 
     environment {
         PATH = "/usr/local/bin:${env.PATH}"
+        CI = "true"
     }
 
     stages {

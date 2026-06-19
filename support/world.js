@@ -16,7 +16,8 @@ class PlaywrightWorld extends World {
 setWorldConstructor(PlaywrightWorld);
 
 Before(async function () {
-  this.browser = await chromium.launch({ headless: false });
+  const isCI = process.env.CI === 'true';
+  this.browser = await chromium.launch({ headless: isCI });
   this.context = await this.browser.newContext({
     recordVideo: {
       dir: '/Users/900173/Documents/playwright/videos/',
